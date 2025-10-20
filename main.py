@@ -25,7 +25,19 @@ if not OPENAI_API_KEY:
 openai.api_key = OPENAI_API_KEY
 
 # Инициализация бота и диспетчера
-bot = Bot(token=BOT_TOKEN, parse_mode=ParseMode.HTML)
+from aiogram import Bot, Dispatcher, types
+from aiogram.client.default import DefaultBotProperties
+
+BOT_TOKEN = os.getenv("BOT_TOKEN")
+
+if not BOT_TOKEN:
+    raise ValueError("❌ Не найден BOT_TOKEN в переменных окружения.")
+
+# Новый синтаксис для aiogram 3.x
+bot = Bot(
+    token=BOT_TOKEN,
+    default=DefaultBotProperties(parse_mode=types.ParseMode.HTML)
+)
 dp = Dispatcher()
 
 @dp.message(Command("start"))
