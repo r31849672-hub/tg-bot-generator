@@ -58,8 +58,4 @@ async def generate_text(message: Message):
         logging.error(e)
         await message.answer("⚠️ Произошла ошибка при генерации. Попробуй снова позже.")
 
-async def main():
-    await dp.start_polling(bot)
 
-if __name__ == "__main__":
-    asyncio.run(main())
